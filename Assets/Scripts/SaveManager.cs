@@ -16,7 +16,7 @@ public class SaveManager : MonoBehaviour
         {
             string json = File.ReadAllText(saveFilePath);
             SessionData data = JsonUtility.FromJson<SessionData>(json);
-            Debug.Log("Save file loaded.");
+            Debug.Log("Save file loaded");
             return data;
         }
         else
