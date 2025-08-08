@@ -1,7 +1,7 @@
-VR Lab Prototype for Gamyra
-A modular VR prototype for a training and research lab, featuring interactive puzzles, a stateful smart assistant, and a user-controlled session persistence system.
+XR Lab Prototype with LLM.
+A modular XR prototype for a training and research lab, featuring interactive puzzles, a stateful smart assistant, and a user-controlled session persistence system.
 
-This project was developed as a technical assessment for Gamyra, demonstrating a robust, scalable, and intuitive VR application built from the ground up in Unity. It showcases core VR mechanics, advanced interaction design, and a clean, event-driven architecture.
+This project was developed as a technical assessment, demonstrating a robust, scalable, and intuitive VR application built from the ground up in Unity. It showcases core VR mechanics, advanced interaction design, and a clean, event-driven architecture.
 
 Features
 Guided Locomotion: A teleportation system using specific anchors guides the user to points of interest, controlling the flow of the training scenario.
