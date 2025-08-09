@@ -6,7 +6,7 @@ A modular VR prototype for a training and research lab, featuring interactive pu
 This project was developed as a technical assessment, demonstrating a robust, scalable, and intuitive VR application built from the ground up in Unity. It showcases core VR mechanics, advanced interaction design, a clean, event-driven architecture, and direct integration with local AI to create a truly dynamic and intelligent training tool.
 
 Features
-Conversational AI Assistant (ALISA): The smart assistant is powered by a locally-run Llama 3.1:8b, Qwen3:8b, and tinyllama models via Ollama and the Neocortex SDK. It provides guidance and answers user questions through an interactive, in-world chat interface, complete with a scrollable history and virtual keyboard input.
+Conversational AI Assistant (ALISA): _Advanced Laboratory Intelligence System Assistant_ The smart assistant is powered by a locally-run Llama 3.1:8b, Qwen3:8b, and tinyllama models via Ollama and the Neocortex SDK. It provides guidance and answers user questions through an interactive, in-world chat interface, complete with a scrollable history and virtual keyboard input.
 
 Guided Locomotion: A teleportation system using specific anchors guides the user to points of interest, controlling the flow of the training scenario.
 
