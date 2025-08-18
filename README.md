@@ -5,7 +5,6 @@ A modular VR prototype for a training and research lab, featuring interactive pu
 This project was developed as a technical assessment, demonstrating a robust, scalable, and intuitive VR application built from the ground up in Unity. It showcases core VR mechanics, advanced interaction design, a clean, event-driven architecture, and direct integration with local AI to create a truly dynamic and intelligent training tool.
 
 🎥 Project Demo
-(Suggestion: This is the perfect place to add a short GIF or video demonstrating the prototype in action. You can record your screen while using the XR Device Simulator and upload the GIF here. This is the single most effective way to make your README appealing.)
 
 <img width="1158" height="742" alt="image" src="https://github.com/user-attachments/assets/4e9f10d7-2f4e-47f0-8973-8fed9685e3ff" />
 
