@@ -1,26 +1,41 @@
-XR Lab Prototype with LLM.
-A modular VR prototype for a training and research lab, featuring interactive puzzles and a conversational AI assistant powered by a local Large Language Model (LLM).
 
-<img width="1158" height="742" alt="image" src="https://github.com/user-attachments/assets/4e9f10d7-2f4e-47f0-8973-8fed9685e3ff" />
+XR Lab Prototype with LLM
+A modular VR prototype for a training and research lab, featuring interactive puzzles and a conversational AI assistant powered by a local Large Language Model (LLM).
 
 This project was developed as a technical assessment, demonstrating a robust, scalable, and intuitive VR application built from the ground up in Unity. It showcases core VR mechanics, advanced interaction design, a clean, event-driven architecture, and direct integration with local AI to create a truly dynamic and intelligent training tool.
 
-Features
-Conversational AI Assistant (ALISA): _Advanced Laboratory Intelligence System Assistant_ The smart assistant is powered by a locally-run Llama 3.1:8b, Qwen3:8b, and tinyllama models via Ollama and the Neocortex SDK. It provides guidance and answers user questions through an interactive, in-world chat interface, complete with a scrollable history and virtual keyboard input.
+🎥 Project Demo
+(Suggestion: This is the perfect place to add a short GIF or video demonstrating the prototype in action. You can record your screen while using the XR Device Simulator and upload the GIF here. This is the single most effective way to make your README appealing.)
 
-Guided Locomotion: A teleportation system using specific anchors guides the user to points of interest, controlling the flow of the training scenario.
+<img width="1158" height="742" alt="image" src="https://github.com/user-attachments/assets/4e9f10d7-2f4e-47f0-8973-8fed9685e3ff" />
 
-Advanced Object Interaction: A robust grab-and-place system allows users to interact with objects. The system is built on a modular parent-child structure that separates logic from visuals for easy art replacement.
+✨ Features
+🤖 Conversational AI Assistant (ALISA): The smart assistant is powered by locally-run models (Llama 3.1:8b, Qwen2:7b, tinyllama) via Ollama and the Neocortex SDK. It provides guidance and answers user questions through an interactive, in-world chat interface. The AI is context-aware, receiving the current game state with each prompt to provide relevant responses.
 
-Stateful Puzzle Mechanics: A "key and lock" puzzle requires users to place specific objects in matching sockets, with Interaction Layer Masks preventing incorrect solutions.
+🧭 Guided Locomotion: A teleportation system using specific Teleportation Anchors guides the user to points of interest, controlling the flow of the training scenario and ensuring comfort for new VR users.
 
-User-Controlled Session Persistence: A full Save/Load/Reset system allows researchers to manage the simulation state. The exact position, rotation, and completion status of all puzzle objects are saved to a JSON file.
+🖐️ Advanced Object Interaction: A robust grab-and-place system allows users to interact with objects. The system is built on a modular parent-child structure where the parent GameObject holds the XR Grab Interactable logic, while child objects handle the visuals (Mesh Renderer) and physics (Rigidbody and Collider). This separation allows for easy art replacement and optimized physics.
 
-VR-Native UI: All UI elements are fully compatible with VR controllers, using a ray-based interaction model.
+🧩 Stateful Puzzle Mechanics: A "key and lock" puzzle requires users to place specific objects in matching sockets. This is enforced by Interaction Layer Masks on the XR Socket Interactor components, which prevent incorrect solutions and provide clear visual feedback (hover materials) and audio cues.
 
-Hardware-Independent Testing: Developed and tested entirely within the Unity Editor using the XR Device Simulator.
+💾 User-Controlled Session Persistence: A full Save/Load/Reset system allows researchers to manage the simulation state. The SaveManager script serializes a SessionData object containing the position, rotation, and completion status of all puzzle objects to a JSON file.
 
-Getting Started
+🖥️ VR-Native UI: All UI elements are built on a World Space Canvas and are fully compatible with VR controllers. The EventSystem uses the XR UI Input Module and Tracked Device Graphic Raycaster to translate controller ray interactions into UI clicks.
+
+🖱️ Hardware-Independent Testing: Developed and tested entirely within the Unity Editor using the XR Device Simulator, allowing for rapid iteration and debugging without requiring a physical VR headset.
+
+🏗️ Architecture Overview
+The project follows a modular, event-driven architecture designed for scalability. Core systems are separated to ensure a clean data flow and clear responsibilities.
+
+Player Rig (Input Layer): The XR Origin prefab acts as the user. It translates controller inputs into actions like movement (Teleportation Provider) and interaction (Direct and Ray Interactors).
+
+Scene Systems (Logic Layer): These are the brains of the application. The XR Interaction Manager acts as a central hub for all interactions. The AssistantManager script manages the game state and puzzle logic, while the SaveManager handles all file I/O for persistence.
+
+Interactive Objects (Interaction Layer): These are the "smart" objects in the world. Grab Interactables (spheres) and Socket Interactors (platforms) register with the XR Interaction Manager and fire events when used.
+
+UI & Data (Presentation/Data Layer): The AssistantManager sends updates to the World Space Canvas. When the user saves, the SaveManager writes the state to a saveFile.json.
+
+🚀 Getting Started
 Follow these instructions to get the project running on your local machine.
 
 Prerequisites
@@ -28,12 +43,16 @@ Unity Hub
 
 Unity 2022.3.48 (LTS) with the Android Build Support module installed.
 
-Ollama: You must have Ollama installed and running on your machine.
+Ollama: You must have Ollama installed and running on your machine. Ollama serves the LLM that the Unity project will connect to.
 
-Llama 3.1 Model: You must have the llama3.1:8b model pulled and available in Ollama. (Command: ollama pull llama3.1:8b)
+LLM Models: You must have at least one of the supported models pulled and available in Ollama.
+
+ollama pull llama3.1:8b
 
 Installation
-Clone the repository from GitHub: git clone https://github.com/iyad-salameh/XR-LLM-Lab.git
+Clone the repository from GitHub:
+
+git clone https://github.com/iyad-salameh/XR-LLM-Lab.git
 
 Ensure Ollama is running in your terminal with the required model.
 
@@ -41,7 +60,7 @@ Open Unity Hub, click the "Open" button, and navigate to the cloned project fold
 
 Unity will open the project and automatically import all assets and resolve packages. This may take several minutes.
 
-Usage
+🎮 Usage
 Once the project is open, navigate to the main scene file located at: Assets/Scenes/VRSetup.unity.
 
 Press the Play button at the top of the Unity Editor.
@@ -49,37 +68,67 @@ Press the Play button at the top of the Unity Editor.
 The simulation will start, and the XR Device Simulator will be active. The AI Assistant will connect to your local Ollama instance.
 
 Simulator Controls
-The primary controls for the XR Device Simulator are as follows:
+Action
 
-Look/Aim: Mouse
+Control
 
-Move Player Rig: W, A, S, D
+Look / Aim Ray
 
-Control Left Hand: Hold Left Shift + Move Mouse
+Mouse
 
-Control Right Hand: Hold Left Ctrl + Move Mouse
+Move Player Rig
 
-Grab/Grip Object: Middle Mouse Button
+W, A, S, D
 
-Teleport: Aim at an anchor and press the controller's thumbstick.
+Control Left Hand
 
-UI & Virtual Keyboard Interaction:
+Hold Left Shift + Mouse
 
-Point the controller's ray at a UI element (button, keyboard key).
+Control Right Hand
 
-Press the Trigger button to "click."
+Hold Left Ctrl + Mouse
 
-(Right Controller Trigger: Left Mouse Button / Left Controller Trigger: Right Mouse Button)
+Grab / Grip Object
 
-License
+Middle Mouse Button
+
+Teleport
+
+Aim at anchor + Press Thumbstick
+
+UI / Keyboard Click
+
+Aim ray + Press Trigger
+
+(Right Trigger)
+
+(Left Mouse Button)
+
+(Left Trigger)
+
+(Right Mouse Button)
+
+📂 Project Structure
+A brief overview of the key folders in the project:
+
+/
+├── Assets/
+│   ├── Scenes/         # Contains the main VRSetup scene
+│   ├── Scripts/        # All C# scripts (AssistantManager, SaveManager, etc.)
+│   ├── Samples/        # Imported assets from the XR Toolkit and Neocortex
+│   └── ...             # Other asset folders (Materials, Prefabs, etc.)
+├── Packages/           # Unity Package Manager manifest
+└── ProjectSettings/    # All project configuration files
+
+📜 License
 This project is licensed under the MIT License. See the LICENSE file for full details.
 
 The MIT License is a permissive free software license originating at the Massachusetts Institute of Technology (MIT). As a permissive license, it puts only very limited restrictions on reuse and has, therefore, high license compatibility. It permits reuse within proprietary software, provided that all copies of the licensed software include a copy of the MIT License terms and the copyright notice.
 
-Contributing
+🤝 Contributing
 Please read CONTRIBUTING.md for details on the process for submitting pull requests.
 
-Acknowledgments
+🙏 Acknowledgments
 Built with the Unity Engine.
 
 Interaction and locomotion systems are powered by the XR Interaction Toolkit package.
